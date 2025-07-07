@@ -610,3 +610,32 @@ Your next steps would be to:
 5.  **Push your work** to your GitHub Classroom repository for submission.
 
 If you encounter any specific issues during these steps, or if you'd like to refine any part of the code or documentation, feel free to ask!
+
+import React from 'react';
+
+const Header = ({ title, theme, toggleTheme }) => {
+  return (
+    <header className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6 shadow-lg rounded-b-xl relative">
+      <div className="container mx-auto px-4 py-2 flex flex-col items-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center">
+          {title}
+        </h1>
+        <p className="mt-2 text-lg md:text-xl text-center opacity-90">
+          Explore data fetched from a public API
+        </p>
+      </div>
+      {/* Theme Switcher Button */}
+      <button
+        onClick={toggleTheme}
+        className="absolute top-4 right-4 p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Toggle theme"
+      >
+        <span className="text-2xl transition-transform duration-300 ease-in-out transform rotate-0 hover:rotate-45">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </span>
+      </button>
+    </header>
+  );
+};
+
+export default Header;

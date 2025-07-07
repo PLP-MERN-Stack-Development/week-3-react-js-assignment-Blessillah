@@ -270,6 +270,21 @@ const Header = ({ title }) => {
         </h1>
         <p className="mt-2 text-lg md:text-xl text-center opacity-90">
           Explore data fetched from a public API
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React.js and Tailwind CSS Assignment</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- The JavaScript entry point for your React application -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
         </p>
       </div>
     </header>

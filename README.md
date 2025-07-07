@@ -464,3 +464,129 @@ function App() {
 
 export default App;
 ```
+Here's a sample guide on how you would typically **deploy your React application** to a popular hosting service like Vercel or Netlify, which is a crucial part of your assignment submission. This isn't code, but a sample of the *process* and what you'd add to your `README.md`.
+
+-----
+
+### Sample Deployment Guide (for your `README.md` or personal notes)
+
+This section outlines the general steps to deploy your Vite React application to a popular hosting service. For this assignment, you'll need to choose one and follow its specific instructions. Vercel and Netlify are excellent free options for React apps.
+
+#### Option 1: Deploying with Vercel
+
+Vercel is known for its simplicity and direct integration with GitHub.
+
+1.  **Create a Vercel Account:**
+      * Go to [vercel.com](https://vercel.com/) and sign up using your GitHub account.
+2.  **Import Your Project:**
+      * Once logged in, click "New Project".
+      * Select "Import Git Repository" and choose your assignment repository from GitHub.
+3.  **Configure Project:**
+      * Vercel will usually auto-detect that it's a Vite React project.
+      * **Framework Preset:** Ensure "Vite" or "Create React App" (if Vite isn't explicitly listed, it often works with CRA preset) is selected.
+      * **Root Directory:** Usually `./` (the root of your repository).
+      * **Build Command:** `npm run build` (Vite's default build command).
+      * **Output Directory:** `dist` (Vite's default output directory for production builds).
+      * Click "Deploy".
+4.  **Deployment:**
+      * Vercel will build and deploy your application. Once complete, it will provide you with a unique URL.
+5.  **Add URL to `README.md`:**
+      * Copy this URL and paste it into the "Deployment URL" section of your `README.md` file.
+
+#### Option 2: Deploying with Netlify
+
+Netlify also offers seamless GitHub integration and a generous free tier.
+
+1.  **Create a Netlify Account:**
+      * Go to [netlify.com](https://www.netlify.com/) and sign up using your GitHub account.
+2.  **Import Your Project:**
+      * Click "Add new site" -\> "Import an existing project".
+      * Select "GitHub" and authorize Netlify to access your repositories.
+      * Choose your assignment repository.
+3.  **Configure Build Settings:**
+      * Netlify will typically detect Vite.
+      * **Base directory:** Keep it empty or `./`.
+      * **Build command:** `npm run build`
+      * **Publish directory:** `dist`
+      * Click "Deploy site".
+4.  **Deployment:**
+      * Netlify will build and deploy your application. You'll get a generated URL (e.g., `your-site-name-12345.netlify.app`). You can change the subdomain later if you wish.
+5.  **Add URL to `README.md`:**
+      * Copy this URL and paste it into the "Deployment URL" section of your `README.md` file.
+
+-----
+
+### Example `README.md` section after deployment:
+
+```markdown
+## Deployment
+
+This application has been deployed to Vercel (or Netlify). You can view the live application here:
+
+**Deployment URL:** `https://your-unique-app-name.vercel.app/`
+*(Replace with your actual URL)*
+
+Here's a sample guide on how you would typically **deploy your React application** to a popular hosting service like Vercel or Netlify, which is a crucial part of your assignment submission. This isn't code, but a sample of the *process* and what you'd add to your `README.md`.
+
+-----
+
+### Sample Deployment Guide (for your `README.md` or personal notes)
+
+This section outlines the general steps to deploy your Vite React application to a popular hosting service. For this assignment, you'll need to choose one and follow its specific instructions. Vercel and Netlify are excellent free options for React apps.
+
+#### Option 1: Deploying with Vercel
+
+Vercel is known for its simplicity and direct integration with GitHub.
+
+1.  **Create a Vercel Account:**
+      * Go to [vercel.com](https://vercel.com/) and sign up using your GitHub account.
+2.  **Import Your Project:**
+      * Once logged in, click "New Project".
+      * Select "Import Git Repository" and choose your assignment repository from GitHub.
+3.  **Configure Project:**
+      * Vercel will usually auto-detect that it's a Vite React project.
+      * **Framework Preset:** Ensure "Vite" or "Create React App" (if Vite isn't explicitly listed, it often works with CRA preset) is selected.
+      * **Root Directory:** Usually `./` (the root of your repository).
+      * **Build Command:** `npm run build` (Vite's default build command).
+      * **Output Directory:** `dist` (Vite's default output directory for production builds).
+      * Click "Deploy".
+4.  **Deployment:**
+      * Vercel will build and deploy your application. Once complete, it will provide you with a unique URL.
+5.  **Add URL to `README.md`:**
+      * Copy this URL and paste it into the "Deployment URL" section of your `README.md` file.
+
+#### Option 2: Deploying with Netlify
+
+Netlify also offers seamless GitHub integration and a generous free tier.
+
+1.  **Create a Netlify Account:**
+      * Go to [netlify.com](https://www.netlify.com/) and sign up using your GitHub account.
+2.  **Import Your Project:**
+      * Click "Add new site" -\> "Import an existing project".
+      * Select "GitHub" and authorize Netlify to access your repositories.
+      * Choose your assignment repository.
+3.  **Configure Build Settings:**
+      * Netlify will typically detect Vite.
+      * **Base directory:** Keep it empty or `./`.
+      * **Build command:** `npm run build`
+      * **Publish directory:** `dist`
+      * Click "Deploy site".
+4.  **Deployment:**
+      * Netlify will build and deploy your application. You'll get a generated URL (e.g., `your-site-name-12345.netlify.app`). You can change the subdomain later if you wish.
+5.  **Add URL to `README.md`:**
+      * Copy this URL and paste it into the "Deployment URL" section of your `README.md` file.
+
+-----
+
+### Example `README.md` section after deployment:
+
+```markdown
+## Deployment
+
+This application has been deployed to Vercel (or Netlify). You can view the live application here:
+
+**Deployment URL:** `https://your-unique-app-name.vercel.app/`
+*(Replace with your actual URL)*
+
+---
+```

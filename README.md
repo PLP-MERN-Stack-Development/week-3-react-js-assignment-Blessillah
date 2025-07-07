@@ -231,3 +231,221 @@ Open your web browser and navigate to the address provided in your terminal (usu
 ├── utils/              # Utility functions (not explicitly used in this example but reserved)
 └── App.jsx             # Main application component
 API IntegrationThe application integrates with the JSONPlaceholder API to fetch sample post data.Endpoint: https://jsonplaceholder.typicode.com/postsMethod: GETImplementation: Data fetching is handled within the App.jsx component using the fetch API and useEffect/useCallback hooks to manage loading and error states.Deployment(Replace this section with your actual deployment details once you've deployed your app.)This application has been deployed to a public hosting service. You can view the live application here:Deployment URL: [YOUR_DEPLOYMENT_URL_HERE](Example deployment platforms: Vercel, Netlify, GitHub Pages. You'll need to follow their specific instructions to deploy your Vite React app.)SubmissionYour work will be automatically submitted when you push your changes to your GitHub Classroom repository. Please ensure you have:Completed all required components and features.Implemented proper state management with React hooks.Integrated with at least one external API.Styled your application with Tailwind CSS.Deployed your application and added the deployment URL to this README.md file.
+Okay, let's break down the `App.jsx` content into the recommended project structure. This will help you organize your code into reusable modules, aligning with best practices for larger React applications and fulfilling the "Project Structure" requirement of your assignment.
+
+Here's how you would structure your files and what each file would contain:
+
+-----
+
+### Project Structure (as per assignment)
+
+```
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── LoadingSpinner.jsx
+│   ├── ErrorDisplay.jsx
+│   └── PostCard.jsx
+├── api/
+│   └── posts.js
+├── App.jsx
+└── index.css  (for Tailwind directives, usually provided by Vite starter)
+```
+
+-----
+
+### File Contents
+
+#### 1\. `src/components/Header.jsx`
+
+```react
+import React from 'react';
+
+const Header = ({ title }) => {
+  return (
+    <header className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6 shadow-lg rounded-b-xl">
+      <div className="container mx-auto px-4 py-2">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center">
+          {title}
+        </h1>
+        <p className="mt-2 text-lg md:text-xl text-center opacity-90">
+          Explore data fetched from a public API
+        </p>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+```
+
+#### 2\. `src/components/LoadingSpinner.jsx`
+
+```react
+import React from 'react';
+
+const LoadingSpinner = () => {
+  return (
+    <div className="flex justify-center items-center py-10">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-emerald-500"></div>
+      <p className="ml-4 text-xl text-gray-600">Loading data...</p>
+    </div>
+  );
+};
+
+export default LoadingSpinner;
+```
+
+#### 3\. `src/components/ErrorDisplay.jsx`
+
+```react
+import React from 'react';
+
+const ErrorDisplay = ({ message }) => {
+  return (
+    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative my-6 max-w-2xl mx-auto">
+      <strong className="font-bold">Error!</strong>
+      <span className="block sm:inline ml-2">{message}</span>
+      <p className="text-sm mt-2">Please try refreshing the page or check your network connection.</p>
+    </div>
+  );
+};
+
+export default ErrorDisplay;
+```
+
+#### 4\. `src/components/PostCard.jsx`
+
+```react
+import React from 'react';
+
+const PostCard = ({ post }) => {
+  return (
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-2 leading-tight capitalize">
+          {post.title}
+        </h3>
+        <p className="text-sm text-gray-600 mb-4">
+          User ID: <span className="font-medium text-emerald-600">{post.userId}</span>
+        </p>
+        <p className="text-gray-700 text-base line-clamp-3">
+          {post.body}
+        </p>
+      </div>
+      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+        <button className="text-emerald-600 hover:text-emerald-800 font-medium text-sm">
+          Read More &rarr;
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PostCard;
+```
+
+#### 5\. `src/api/posts.js`
+
+```javascript
+// This file contains functions for interacting with the posts API.
+
+const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
+
+/**
+ * Fetches all posts from the API.
+ * @returns {Promise<Array>} A promise that resolves to an array of post objects.
+ * @throws {Error} If the network response is not ok.
+ */
+export const fetchAllPosts = async () => {
+  const response = await fetch(`${API_BASE_URL}/posts`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+};
+
+// You could add more API functions here, e.g., fetchPostById, createPost, etc.
+// export const fetchPostById = async (id) => { ... };
+```
+
+#### 6\. `src/App.jsx` (Updated)
+
+```react
+import React, { useState, useEffect, useCallback } from 'react';
+import Header from './components/Header';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorDisplay from './components/ErrorDisplay';
+import PostCard from './components/PostCard';
+import { fetchAllPosts } from './api/posts'; // Import the API function
+
+function App() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Use the imported API function
+  const loadPosts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchAllPosts(); // Call the API function
+      setPosts(data);
+    } catch (err) {
+      setError(`Failed to fetch posts: ${err.message}`);
+      console.error("API fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadPosts();
+  }, [loadPosts]);
+
+  const filteredPosts = posts.filter(post =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.body.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-100 pb-10">
+      <Header title="Public API Data Explorer" />
+
+      <div className="container mx-auto px-4 mt-8">
+        <div className="max-w-xl mx-auto mb-8">
+          <input
+            type="text"
+            placeholder="Search posts by title or content..."
+            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        {loading && <LoadingSpinner />}
+
+        {error && <ErrorDisplay message={error} />}
+
+        {!loading && !error && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredPosts.length > 0 ? (
+              filteredPosts.map(post => (
+                <PostCard key={post.id} post={post} />
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-600 text-lg py-10">
+                No posts found matching your search.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
